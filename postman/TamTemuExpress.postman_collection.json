@@ -1,0 +1,511 @@
+{
+  "info": {
+    "name": "TamTemuExpress API",
+    "description": "Kolekcja endpointów API dla sklepu internetowego TamTemuExpress.\n\n## Autoryzacja\nWiększość endpointów wymaga tokena JWT. Po zalogowaniu skopiuj `accessToken` i dodaj go do nagłówka:\n```\nAuthorization: Bearer <token>\n```\n\n## Zmienne\n- `baseUrl`: http://localhost:3001/api\n- `accessToken`: Token otrzymany po logowaniu\n- `refreshToken`: Token do odświeżania sesji",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001/api"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Autoryzacja",
+      "description": "Endpointy do rejestracji, logowania i zarządzania sesją użytkownika.",
+      "item": [
+        {
+          "name": "Rejestracja nowego użytkownika",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jan\",\n  \"lastName\": \"Kowalski\",\n  \"email\": \"jan.kowalski@example.com\",\n  \"password\": \"haslo123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Tworzy nowe konto użytkownika.\n\n**Wymagane pola:**\n- `firstName` - Imię\n- `lastName` - Nazwisko\n- `email` - Adres email (unikalny)\n- `password` - Hasło (min. 6 znaków)"
+          }
+        },
+        {
+          "name": "Logowanie",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@shop.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Loguje użytkownika i zwraca tokeny JWT.\n\n**Konta testowe:**\n- Admin: `admin@shop.com` / `admin123`\n- User: `user1@shop.com` / `user123`\n\n**Odpowiedź zawiera:**\n- `accessToken` - Token dostępu (15 min)\n- `refreshToken` - Token odświeżania (7 dni)\n- `user` - Dane użytkownika"
+          }
+        },
+        {
+          "name": "Odświeżenie tokena",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh"]
+            },
+            "description": "Generuje nowy `accessToken` używając `refreshToken`.\n\nUżyj gdy accessToken wygaśnie (po 15 min)."
+          }
+        },
+        {
+          "name": "Wylogowanie",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            },
+            "description": "Wylogowuje użytkownika i unieważnia refresh token."
+          }
+        },
+        {
+          "name": "Pobierz dane zalogowanego użytkownika",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Zwraca dane aktualnie zalogowanego użytkownika.\n\n**Wymaga autoryzacji.**"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📦 Produkty",
+      "description": "Endpointy do pobierania produktów i kategorii.",
+      "item": [
+        {
+          "name": "Lista wszystkich produktów",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            },
+            "description": "Zwraca listę wszystkich produktów.\n\n**Opcjonalne parametry query:**\n- `category` - Filtruj po kategorii\n- `search` - Szukaj w nazwie produktu"
+          }
+        },
+        {
+          "name": "Lista produktów (z filtrem kategorii)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products?category=electronics",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "electronics"
+                }
+              ]
+            },
+            "description": "Zwraca produkty z kategorii `electronics`.\n\n**Dostępne kategorie:**\n- `electronics`\n- `jewelery`\n- `men's clothing`\n- `women's clothing`"
+          }
+        },
+        {
+          "name": "Lista produktów (wyszukiwanie)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products?search=jacket",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "jacket"
+                }
+              ]
+            },
+            "description": "Wyszukuje produkty zawierające \"jacket\" w nazwie."
+          }
+        },
+        {
+          "name": "Szczegóły produktu",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "1"]
+            },
+            "description": "Zwraca szczegółowe informacje o produkcie o ID = 1.\n\n**Zawiera:**\n- Tytuł, opis, cenę\n- Kategorię\n- Obrazek\n- Ocenę i liczbę opinii\n- Ilość w magazynie"
+          }
+        },
+        {
+          "name": "Lista kategorii",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "categories"]
+            },
+            "description": "Zwraca listę wszystkich dostępnych kategorii produktów."
+          }
+        }
+      ]
+    },
+    {
+      "name": "⭐ Opinie",
+      "description": "Endpointy do zarządzania opiniami o produktach.",
+      "item": [
+        {
+          "name": "Opinie o produkcie",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/reviews/product/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "product", "1"]
+            },
+            "description": "Zwraca wszystkie opinie dla produktu o ID = 1.\n\n**Każda opinia zawiera:**\n- Ocenę (1-5 gwiazdek)\n- Komentarz\n- Imię i nazwisko autora\n- Datę dodania"
+          }
+        },
+        {
+          "name": "Dodaj opinię",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"rating\": 5,\n  \"comment\": \"Świetny produkt! Polecam każdemu.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"]
+            },
+            "description": "Dodaje nową opinię do produktu.\n\n**Wymaga autoryzacji.**\n\n**Ograniczenia:**\n- Jeden użytkownik może dodać tylko 1 opinię na produkt\n- Rating: 1-5"
+          }
+        },
+        {
+          "name": "Edytuj opinię",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Zaktualizowana opinia - produkt nadal dobry.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "1"]
+            },
+            "description": "Edytuje opinię o ID = 1.\n\n**Wymaga autoryzacji.**\n\n**Tylko właściciel opinii może ją edytować.**"
+          }
+        },
+        {
+          "name": "Usuń opinię",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "1"]
+            },
+            "description": "Usuwa opinię o ID = 1.\n\n**Wymaga autoryzacji.**\n\n**Kto może usunąć:**\n- Właściciel opinii\n- Administrator"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🛒 Koszyk",
+      "description": "Endpointy do zarządzania koszykiem zakupowym.",
+      "item": [
+        {
+          "name": "Pobierz koszyk",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart"]
+            },
+            "description": "Zwraca zawartość koszyka zalogowanego użytkownika.\n\n**Wymaga autoryzacji.**\n\n**Każdy element zawiera:**\n- Dane produktu (tytuł, cena, obrazek)\n- Ilość"
+          }
+        },
+        {
+          "name": "Dodaj do koszyka",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart"]
+            },
+            "description": "Dodaje produkt do koszyka.\n\n**Wymaga autoryzacji.**\n\nJeśli produkt już jest w koszyku, ilość zostanie zwiększona."
+          }
+        },
+        {
+          "name": "Zmień ilość w koszyku",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cart/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart", "1"]
+            },
+            "description": "Zmienia ilość produktu w koszyku (ID pozycji koszyka = 1).\n\n**Wymaga autoryzacji.**"
+          }
+        },
+        {
+          "name": "Usuń z koszyka",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart", "1"]
+            },
+            "description": "Usuwa pozycję o ID = 1 z koszyka.\n\n**Wymaga autoryzacji.**"
+          }
+        },
+        {
+          "name": "Wyczyść koszyk",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart"]
+            },
+            "description": "Usuwa wszystkie produkty z koszyka.\n\n**Wymaga autoryzacji.**"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Zamówienia",
+      "description": "Endpointy do składania i przeglądania zamówień.",
+      "item": [
+        {
+          "name": "Historia zamówień",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            },
+            "description": "Zwraca listę wszystkich zamówień zalogowanego użytkownika.\n\n**Wymaga autoryzacji.**\n\n**Każde zamówienie zawiera:**\n- ID i datę\n- Status\n- Łączną wartość\n- Liczbę produktów"
+          }
+        },
+        {
+          "name": "Szczegóły zamówienia",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            },
+            "description": "Zwraca szczegóły zamówienia o ID = 1.\n\n**Wymaga autoryzacji.**\n\n**Zawiera:**\n- Listę produktów z ilościami i cenami\n- Łączną wartość\n- Status zamówienia\n- Datę złożenia"
+          }
+        },
+        {
+          "name": "Złóż zamówienie",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            },
+            "description": "Składa zamówienie z produktów w koszyku.\n\n**Wymaga autoryzacji.**\n\n**Akcje:**\n1. Tworzy zamówienie z pozycjami z koszyka\n2. Czyści koszyk\n3. Zwraca szczegóły zamówienia"
+          }
+        }
+      ]
+    },
+    {
+      "name": "👑 Admin",
+      "description": "Endpointy dostępne tylko dla administratorów.",
+      "item": [
+        {
+          "name": "Wszystkie opinie (admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "reviews"]
+            },
+            "description": "Zwraca listę wszystkich opinii w systemie.\n\n**Wymaga autoryzacji jako admin.**\n\n**Zawiera:**\n- Wszystkie opinie ze wszystkich produktów\n- Dane autorów\n- Nazwy produktów"
+          }
+        },
+        {
+          "name": "Lista użytkowników (admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"]
+            },
+            "description": "Zwraca listę wszystkich zarejestrowanych użytkowników.\n\n**Wymaga autoryzacji jako admin.**\n\n**Zawiera:**\n- ID, email, imię, nazwisko\n- Rolę (user/admin)\n- Datę rejestracji"
+          }
+        }
+      ]
+    }
+  ]
+}
