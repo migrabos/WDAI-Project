@@ -20,7 +20,7 @@ Nowoczesny sklep internetowy inspirowany platformą Temu, zbudowany z użyciem R
 
 ---
 
-## 🎯 O projekcie
+## O projekcie
 
 **TamTemuExpress** to w pełni funkcjonalny sklep internetowy oferujący:
 
@@ -31,10 +31,10 @@ Nowoczesny sklep internetowy inspirowany platformą Temu, zbudowany z użyciem R
 - **Panel administracyjny** - zarządzanie opiniami i przeglądanie użytkowników
 
 ### Główne cechy:
-- 🎨 **Nowoczesny design** - pomarańczowy motyw kolorystyczny, czcionka Proxima Nova
-- 📱 **Responsywność** - działa na komputerach, tabletach i telefonach
-- ⚡ **Szybkość** - zbudowany z Vite dla błyskawicznego ładowania
-- 🔒 **Bezpieczeństwo** - JWT z refresh tokenami, hashowanie haseł bcrypt
+- **Nowoczesny design** - pomarańczowy motyw kolorystyczny, czcionka Proxima Nova
+- **Responsywność** - działa na komputerach, tabletach i telefonach
+- **Szybkość** - zbudowany z Vite dla błyskawicznego ładowania
+- **Bezpieczeństwo** - JWT z refresh tokenami, hashowanie haseł bcrypt
 
 ---
 
@@ -64,41 +64,41 @@ Zarządzanie opiniami użytkowników i podgląd listy zarejestrowanych użytkown
 
 ---
 
-## ✨ Funkcjonalności
+## Funkcjonalności
 
-### 👤 Dla wszystkich użytkowników (niezalogowanych):
-
-| Funkcja | Opis |
-|---------|------|
-| 🏠 **Strona główna** | Przeglądanie listy wszystkich produktów z promocyjnym banerem |
-| 🔍 **Wyszukiwarka** | Wyszukiwanie produktów po nazwie w czasie rzeczywistym |
-| 📂 **Filtrowanie** | Filtrowanie produktów według kategorii (elektronika, biżuteria, odzież) |
-| 📦 **Strona produktu** | Szczegółowy widok z opisem, ceną, oceną i opiniami |
-| ⭐ **Przeglądanie opinii** | Podgląd wszystkich opinii o produkcie |
-| 📊 **Sortowanie** | Sortowanie produktów po cenie, ocenie lub nazwie |
-
-### 🛒 Dla zalogowanych użytkowników:
+### Dla wszystkich użytkowników (niezalogowanych):
 
 | Funkcja | Opis |
 |---------|------|
-| 🛒 **Koszyk zakupowy** | Dodawanie/usuwanie produktów, zmiana ilości |
-| 💳 **Składanie zamówień** | Finalizacja zakupu z podsumowaniem |
-| 📜 **Historia zamówień** | Lista wszystkich złożonych zamówień |
-| 🔎 **Szczegóły zamówienia** | Podgląd szczegółów wybranego zamówienia |
-| 📝 **Dodawanie opinii** | Możliwość wystawienia 1 opinii na produkt (1-5 gwiazdek + komentarz) |
-| ✏️ **Edycja opinii** | Modyfikacja wcześniej dodanych opinii |
-| 🗑️ **Usuwanie opinii** | Usuwanie własnych opinii |
+| **Strona główna** | Przeglądanie listy wszystkich produktów z promocyjnym banerem |
+| **Wyszukiwarka** | Wyszukiwanie produktów po nazwie w czasie rzeczywistym |
+| **Filtrowanie** | Filtrowanie produktów według kategorii (elektronika, biżuteria, odzież) |
+| **Strona produktu** | Szczegółowy widok z opisem, ceną, oceną i opiniami |
+| **Przeglądanie opinii** | Podgląd wszystkich opinii o produkcie |
+| **Sortowanie** | Sortowanie produktów po cenie, ocenie lub nazwie |
 
-### 👑 Dla administratorów:
+### Dla zalogowanych użytkowników:
 
 | Funkcja | Opis |
 |---------|------|
-| 📊 **Panel administratora** | Dostęp do panelu zarządzania |
-| 👁️ **Podgląd wszystkich opinii** | Lista wszystkich opinii w systemie |
-| 🗑️ **Usuwanie opinii** | Możliwość usunięcia dowolnej opinii |
-| 👥 **Lista użytkowników** | Podgląd wszystkich zarejestrowanych użytkowników |
+| **Koszyk zakupowy** | Dodawanie/usuwanie produktów, zmiana ilości |
+| **Składanie zamówień** | Finalizacja zakupu z podsumowaniem |
+| **Historia zamówień** | Lista wszystkich złożonych zamówień |
+| **Szczegóły zamówienia** | Podgląd szczegółów wybranego zamówienia |
+| **Dodawanie opinii** | Możliwość wystawienia 1 opinii na produkt (1-5 gwiazdek + komentarz) |
+| **Edycja opinii** | Modyfikacja wcześniej dodanych opinii |
+| **Usuwanie opinii** | Usuwanie własnych opinii |
 
-### 🔐 Bezpieczeństwo:
+### Dla administratorów:
+
+| Funkcja | Opis |
+|---------|------|
+| **Panel administratora** | Dostęp do panelu zarządzania |
+| **Podgląd wszystkich opinii** | Lista wszystkich opinii w systemie |
+| **Usuwanie opinii** | Możliwość usunięcia dowolnej opinii |
+| **Lista użytkowników** | Podgląd wszystkich zarejestrowanych użytkowników |
+
+### Bezpieczeństwo:
 
 - **JWT Authentication** - tokeny dostępu z czasem ważności 15 minut
 - **Refresh Token** - automatyczne odświeżanie sesji (ważność 7 dni)
@@ -108,7 +108,7 @@ Zarządzanie opiniami użytkowników i podgląd listy zarejestrowanych użytkown
 
 ---
 
-## 🛠️ Technologie
+## Technologie
 
 ### Frontend
 
@@ -134,7 +134,7 @@ Zarządzanie opiniami użytkowników i podgląd listy zarejestrowanych użytkown
 
 ---
 
-## 🏗️ Architektura
+## Architektura
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -171,7 +171,7 @@ Zarządzanie opiniami użytkowników i podgląd listy zarejestrowanych użytkown
 
 ---
 
-## 📦 Instalacja
+## Instalacja
 
 ### Wymagania systemowe
 
@@ -201,7 +201,7 @@ npm install
 
 ---
 
-## 🚀 Uruchomienie
+## Uruchomienie
 
 ### Uruchomienie serwera (backend)
 
@@ -210,7 +210,7 @@ cd server
 npm start
 ```
 
-✅ Serwer uruchomi się na: **http://localhost:3001**
+Serwer uruchomi się na: **http://localhost:3001**
 
 ### Uruchomienie aplikacji (frontend)
 
@@ -221,11 +221,11 @@ cd client
 npm run dev
 ```
 
-✅ Aplikacja uruchomi się na: **http://localhost:5173**
+Aplikacja uruchomi się na: **http://localhost:5173**
 
 ---
 
-## 🔑 Konta testowe
+## Konta testowe
 
 Aplikacja posiada wstępnie utworzone konta do testowania:
 
@@ -245,7 +245,7 @@ Aplikacja posiada wstępnie utworzone konta do testowania:
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Autoryzacja (`/api/auth`)
 
@@ -301,25 +301,25 @@ Aplikacja posiada wstępnie utworzone konta do testowania:
 
 ---
 
-## 📁 Struktura projektu
+## Struktura projektu
 
 ```
 WDAI-Project/
-├── 📁 client/                          # Frontend (React + Vite)
-│   ├── 📁 public/                      # Pliki statyczne
+├── client/                             # Frontend (React + Vite)
+│   ├── public/                         # Pliki statyczne
 │   │   └── favicon.svg                 # Ikona strony
-│   ├── 📁 src/
-│   │   ├── 📁 components/              # Komponenty wielokrotnego użytku
+│   ├── src/
+│   │   ├── components/                 # Komponenty wielokrotnego użytku
 │   │   │   ├── Header.jsx              # Nawigacja górna
 │   │   │   ├── Footer.jsx              # Stopka strony
 │   │   │   ├── Layout.jsx              # Layout wrapper
 │   │   │   ├── ProductCard.jsx         # Karta produktu (grid)
 │   │   │   ├── ProductListItem.jsx     # Element listy produktów
 │   │   │   └── ProtectedRoute.jsx      # Ochrona tras
-│   │   ├── 📁 context/                 # React Context (globalny stan)
+│   │   ├── context/                    # React Context (globalny stan)
 │   │   │   ├── AuthContext.jsx         # Stan autoryzacji
 │   │   │   └── CartContext.jsx         # Stan koszyka
-│   │   ├── 📁 pages/                   # Strony aplikacji
+│   │   ├── pages/                      # Strony aplikacji
 │   │   │   ├── HomePage.jsx            # Strona główna
 │   │   │   ├── ProductDetailPage.jsx   # Szczegóły produktu
 │   │   │   ├── CartPage.jsx            # Koszyk
@@ -328,7 +328,7 @@ WDAI-Project/
 │   │   │   ├── OrderHistoryPage.jsx    # Historia zamówień
 │   │   │   ├── OrderDetailPage.jsx     # Szczegóły zamówienia
 │   │   │   └── AdminPage.jsx           # Panel admina
-│   │   ├── 📁 services/                # Warstwa API
+│   │   ├── services/                   # Warstwa API
 │   │   │   └── api.js                  # Axios instance + interceptors
 │   │   ├── App.jsx                     # Główny komponent + routing
 │   │   ├── main.jsx                    # Entry point
@@ -338,17 +338,17 @@ WDAI-Project/
 │   ├── vite.config.js                  # Konfiguracja Vite
 │   └── package.json                    # Zależności frontend
 │
-├── 📁 server/                          # Backend (Express.js)
-│   ├── 📁 database/                    # Pliki bazy SQLite
+├── server/                             # Backend (Express.js)
+│   ├── database/                       # Pliki bazy SQLite
 │   │   └── shop.db                     # Baza danych
 │   ├── index.js                        # Główny plik serwera
 │   ├── database.js                     # Konfiguracja SQLite
 │   └── package.json                    # Zależności backend
 │
-├── 📁 docs/                            # Dokumentacja
+├── docs/                               # Dokumentacja
 │   └── API.md                          # Dokumentacja API
 │
-├── 📁 postman/                         # Kolekcja Postman
+├── postman/                            # Kolekcja Postman
 │   └── TamTemuExpress.postman_collection.json
 │
 └── README.md                           # Ten plik
@@ -356,7 +356,7 @@ WDAI-Project/
 
 ---
 
-## 👥 Autorzy
+## Autorzy
 
 | Imię i Nazwisko | GitHub |
 |-----------------|--------|
@@ -381,7 +381,7 @@ WDAI-Project/
 
 ---
 
-## 📄 Licencja
+## Licencja
 
 Projekt został stworzony w celach edukacyjnych na potrzeby przedmiotu **WDAI (Wprowadzenie do Aplikacji Internetowych)** na Akademii Górniczo-Hutniczej w Krakowie.
 
