@@ -4,7 +4,7 @@ Nowoczesny sklep internetowy inspirowany platformą Temu, zbudowany z użyciem R
 
 ---
 
-## 📋 Spis treści
+## Spis treści
 
 1. [O projekcie](#-o-projekcie)
 2. [Zrzuty ekranu](#-zrzuty-ekranu)
@@ -38,7 +38,7 @@ Nowoczesny sklep internetowy inspirowany platformą Temu, zbudowany z użyciem R
 
 ---
 
-## 📸 Zrzuty ekranu
+## Zrzuty ekranu
 
 ### Strona główna
 Prezentacja produktów w formie listy z wyszukiwarką i filtrami kategorii.
