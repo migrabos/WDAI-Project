@@ -363,22 +363,6 @@ WDAI-Project/
 | **Michał Graboś** | [@migrabos](https://github.com/migrabos) |
 | **Patryk Ledziński** | [@Patryk-Ledzinski](https://github.com/Patryk-Ledzinski) |
 
-### Podział prac:
-
-**Michał Graboś:**
-- Implementacja backendu (Express.js, SQLite)
-- System autoryzacji JWT
-- API endpoints (produkty, koszyk, zamówienia)
-- Konteksty React (Auth, Cart)
-- Dokumentacja projektu
-
-**Patryk Ledziński:**
-- Inicjalizacja projektu React + Vite
-- Implementacja UI (Material UI, custom theme)
-- Komponenty (Header, Footer, ProductCard)
-- Strony aplikacji (Home, ProductDetail, Cart, Orders)
-- Strony auth (Login, Register, Admin)
-
 ---
 
 ## Licencja
